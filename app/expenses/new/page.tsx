@@ -403,6 +403,7 @@ export default function NewExpensePage() {
               onChange={(e) => setCategory(e.target.value)}
               className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-primary-500"
             >
+              <option value="開業費">開業費（開業準備費用）</option>
               <option value="通信費">通信費</option>
               <option value="仕入れ">仕入れ</option>
               <option value="研修費">研修費</option>
@@ -412,6 +413,15 @@ export default function NewExpensePage() {
               <option value="減価償却費">減価償却費</option>
               <option value="その他">その他</option>
             </select>
+            {category === '開業費' && (
+              <div className="mt-2 rounded-md bg-blue-50 p-3 text-sm text-blue-800">
+                <p className="font-medium">開業費について</p>
+                <p className="mt-1">
+                  開業準備費用（登記費用、初期投資など）は開業費として計上できます。
+                  開業費は一定の条件を満たす必要があります。詳細は税理士にご相談ください。
+                </p>
+              </div>
+            )}
           </div>
 
           <div>

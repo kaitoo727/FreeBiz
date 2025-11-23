@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
 ${receiptText ? `領収書テキスト: ${receiptText.substring(0, 500)}` : ''}
 
 以下の科目から最も適切なものを選択してください：
+- 開業費（開業準備費用、登記費用、初期投資など）
 - 通信費（インターネット、電話代など）
 - 仕入れ（商品の仕入れ）
 - 研修費（セミナー、書籍など）
