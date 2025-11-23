@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { UserProfile } from '@/types';
 import { extractTextFromImage, extractAmountFromText } from '@/lib/ocr';
-import { classifyExpense } from '@/lib/ai-classification';
 import { Upload, Loader2, FileText, Camera } from 'lucide-react';
 
 type InputMode = 'ocr' | 'manual';
@@ -95,16 +94,30 @@ export default function NewExpensePage() {
           setAmount(extractedAmount.toString());
         }
 
-        // AI分類
-        const classification = await classifyExpense(
-          description || text.substring(0, 100),
-          extractedAmount || parseInt(amount) || 0,
-          text
-        );
+        // AI分類（API Route経由）
+        try {
+          const classificationResponse = await fetch('/api/ai/classify-expense', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              description: description || text.substring(0, 100),
+              amount: extractedAmount || parseInt(amount) || 0,
+              receiptText: text,
+            }),
+          });
 
-        setCategory(classification.category);
-        if (!description) {
-          setDescription(classification.description);
+          if (classificationResponse.ok) {
+            const classification = await classificationResponse.json();
+            setCategory(classification.category || 'その他');
+            if (!description) {
+              setDescription(classification.description || '');
+            }
+          }
+        } catch (err) {
+          console.error('AI分類エラー:', err);
+          // エラーが発生しても処理を続行
         }
 
         // 高額経費の場合は減価償却を案内
