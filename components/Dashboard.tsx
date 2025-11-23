@@ -173,6 +173,22 @@ export default function Dashboard() {
               <span className="font-medium text-gray-900">経費を登録</span>
             </Link>
 
+            <Link
+              href="/revenues"
+              className="flex items-center rounded-lg bg-white p-4 shadow-md hover:bg-gray-50"
+            >
+              <DollarSign className="mr-3 h-6 w-6 text-green-500" />
+              <span className="font-medium text-gray-900">売上一覧</span>
+            </Link>
+
+            <Link
+              href="/expenses"
+              className="flex items-center rounded-lg bg-white p-4 shadow-md hover:bg-gray-50"
+            >
+              <Receipt className="mr-3 h-6 w-6 text-red-500" />
+              <span className="font-medium text-gray-900">経費一覧</span>
+            </Link>
+
             {config.showInventory && (
               <Link
                 href="/inventory"
