@@ -48,18 +48,31 @@ git push -u origin main
 
 ### ステップ4: 環境変数の設定
 
-Vercelのプロジェクト設定画面で、以下の環境変数を設定：
+Vercelのプロジェクト設定画面で、以下のいずれかの方法で環境変数を設定：
+
+#### 方法1: .envファイルをインポート（推奨）
 
 1. 「Environment Variables」セクションを開く
-2. 以下の変数を追加：
+2. 「.env」タブをクリック
+3. ローカルの`.env.local`ファイルの内容をコピーして貼り付け
+   - または「Upload .env file」ボタンでファイルをアップロード
+4. 「Save」をクリック
+
+**注意**: `.env.local`ファイルには実際の値が入力されている必要があります。
+
+#### 方法2: 手動で入力
+
+1. 「Environment Variables」セクションを開く
+2. 以下の変数を1つずつ追加：
 
 ```
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-OPENAI_API_KEY=your_openai_api_key（オプション）
+NEXT_PUBLIC_SUPABASE_URL = your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY = your_supabase_anon_key
+OPENAI_API_KEY = your_openai_api_key（オプション）
 ```
 
-3. 「Save」をクリック
+3. 各変数の右側で「Production」「Preview」「Development」すべてにチェックを入れる
+4. 「Save」をクリック
 
 ### ステップ5: デプロイ
 
